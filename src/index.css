@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon: #00f0ff;
+  --color-neon-dim: #00a8b3;
+  --color-neon-glow: rgba(0, 240, 255, 0.15);
+  --color-neon-green: #39ff14;
+  --color-neon-red: #ff3131;
+  --color-neon-yellow: #ffe600;
+  --color-neon-purple: #bf5af2;
+  --color-surface: #0d1117;
+  --color-surface-light: #161b22;
+  --color-surface-lighter: #21262d;
+  --color-border: #30363d;
+  --font-display: "Orbitron", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: var(--color-surface);
+}
+
+/* PCB background pattern */
+.pcb-bg {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Neon glow effect */
+.neon-glow {
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), 0 0 30px rgba(0, 240, 255, 0.1);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+/* Score ring animation */
+@keyframes score-fill {
+  from { stroke-dashoffset: 283; }
+}
+
+.score-ring {
+  animation: score-fill 1.5s ease-out;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-neon-dim); }
