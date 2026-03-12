@@ -7,6 +7,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+  <script>
+    // GitHub Pages SPA redirect: restore path from query string
+    (function() {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+      var p = window.location.search.slice(1).split('&').find(function(s){return s.startsWith('p=/');});
+      if (p) {
+        var path = p.replace('p=', '').replace(/~and~/g, '&');
+        var q = window.location.search.slice(1).split('&').find(function(s){return s.startsWith('q=');});
+        window.history.replaceState(null, null, path + (q ? '?' + q.replace('q=', '').replace(/~and~/g, '&') : '') + window.location.hash);
+      }
+    })();
+  </script>
 </head>
 <body class="bg-gray-950 text-gray-100 antialiased">
   <div id="root"></div>
