@@ -30,13 +30,28 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Install dependencies (main)
         run: npm ci
 
-      - name: Build
+      - name: Build main site
         run: npm run build
         env:
           GITHUB_PAGES: true
+
+      - name: Install dependencies (Russian)
+        run: npm ci
+        working-directory: upgradepc-ru
+
+      - name: Build Russian site
+        run: npm run build
+        working-directory: upgradepc-ru
+        env:
+          GITHUB_PAGES: true
+
+      - name: Merge sites
+        run: |
+          mkdir -p dist/ru
+          cp -r upgradepc-ru/dist/* dist/ru/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

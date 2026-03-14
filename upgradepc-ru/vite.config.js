@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/',
+  base: process.env.GITHUB_PAGES ? '/pcrighelper/ru/' : '/',
   server: { port: 3001 },
 })
